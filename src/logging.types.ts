@@ -1,8 +1,8 @@
 export class LoggingConfig {
-    constructor(public prefixPattern: string,
-                public datetimePattern: string,
-                public datetimeLocale: string,
-                public contextLogLevels: Array<ContextLogLevel>) {
+    constructor(public prefixPattern?: string,
+                public datetimePattern?: string,
+                public datetimeLocale?: string,
+                public contextLogLevels?: Array<ContextLogLevel>) {
     }
 }
 

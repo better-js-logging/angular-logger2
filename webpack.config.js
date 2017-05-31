@@ -30,7 +30,7 @@ var webpackConfig = {
     externals: {
         'sprintf-js': 'sprintf-js',
         'moment': 'moment',
-        '@angular/core': '@angular/core'
+        '@angular/core': 'unicorn'
     },
 
     module: {

@@ -111,11 +111,9 @@ export class Logger extends LoggerBase {
         super();
     }
     
-    readonly trace: () => Array<any> = () => this.log(Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
-    readonly debug: () => Array<any> = () => this.log(Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
-    readonly info: () => Array<any> = () => this.log(Logger.console.info, LogLevel.INFO, this.context, this.config);
-    readonly warn: () => Array<any> = () => this.log(Logger.console.warn, LogLevel.WARN, this.context, this.config);
-    readonly error: () => Array<any> = () => this.log(Logger.console.error, LogLevel.ERROR, this.context, this.config);
-    
-    
+    readonly trace: (message?:any, ...rest: any[]) => Array<any> = () => this.log(Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+    readonly debug: (...rest: any[]) => Array<any> = () => this.log(Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+    readonly info: (...rest: any[]) => Array<any> = () => this.log(Logger.console.info, LogLevel.INFO, this.context, this.config);
+    readonly warn: (...rest: any[]) => Array<any> = () => this.log(Logger.console.warn, LogLevel.WARN, this.context, this.config);
+    readonly error: (...rest: any[]) => Array<any> = () => this.log(Logger.console.error, LogLevel.ERROR, this.context, this.config);
 }
