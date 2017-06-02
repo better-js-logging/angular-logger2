@@ -1,3 +1,6 @@
+import {Injectable} from "@angular/core";
+
+@Injectable()
 export class LoggingConfig {
     constructor(public prefixPattern?: string,
                 public datetimePattern?: string,

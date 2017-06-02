@@ -1,13 +1,12 @@
-import sprintf from "sprintf-js";
+const sprintf = require('sprintf-js').sprintf;
 import * as moment from "moment";
 import {ContextLogLevel, LoggingConfig, LogLevel} from "./logging.types";
 import requireConsole from "./console";
 
 class LoggerBase {
-    protected log(loggingFunc, level: LogLevel, context, config): Array<any> {
-        config.logLevels = config.logLevels || [];
+    protected log(args: IArguments, loggingFunc, level: LogLevel, context, config): Array<any> {
         if (this.levelPassesThreshold(context, level, config)) {
-            const enhancedArguments = this.enhanceLogline(arguments, context, level, config.datetimePattern, config.datetimeLocale, config.prefixPattern);
+            const enhancedArguments = this.enhanceLogline(args, context, level, config);
             loggingFunc.apply(null, enhancedArguments);
             return enhancedArguments; // return for testing purposes
         }
@@ -16,8 +15,8 @@ class LoggerBase {
         }
     };
     
-    private levelPassesThreshold(context, level, config): boolean {
-        return level > LogLevel.OFF.level && level <= this.getLogLevelThreshold(context, config);
+    private levelPassesThreshold(context: string, logLevel: LogLevel, config: LoggingConfig): boolean {
+        return logLevel.level > LogLevel.OFF.level && logLevel.level <= this.getLogLevelThreshold(context, config).level;
     }
     
     private getLogLevelThreshold(context: string, config: LoggingConfig): LogLevel {
@@ -37,37 +36,37 @@ class LoggerBase {
         return contextLogLevels.find((c: ContextLogLevel) => c.context == context);
     }
     
-    private enhanceLogline(args, context: string, level: LogLevel, datetimePattern: string, datetimeLocale: string, prefixPattern: string) {
-        const prefix = this.generatePrefix(context, level, datetimePattern, datetimeLocale, prefixPattern);
-        const processedArgs = maybeApplySprintf([].slice.call(args));
+    private enhanceLogline(args, context: string, logLevel: LogLevel, config: LoggingConfig) {
+        const prefix = this.generatePrefix(context, logLevel, config);
+        const processedArgs = this.maybeApplySprintf([].slice.call(args));
         return [prefix].concat([].slice.call(processedArgs));
-        
-        function maybeApplySprintf(args) {
-            const sprintfAvailable: boolean = typeof sprintf !== 'undefined';
-            const sprintfCandidate = sprintfAvailable && args.length >= 2 && typeof args[0] === 'string' && args[0].indexOf('%') !== -1;
-            if (sprintfCandidate) {
-                try {
-                    // apply sprintf with the proper arguments
-                    const placeholderCount = this.countSprintfHolders(args[0]);
-                    if (placeholderCount > 0) {
-                        args[0] = sprintf.apply(null, args);
-                        args.splice(1, placeholderCount); // remove arguments consumed by sprintf
-                    }
-                }
-                catch (e) {
-                    // invalid arguments passed into sprintf, continue without applying
-                    args.unshift(e);
-                }
-            }
-            
-            return args;
-        }
     }
     
-    private generatePrefix(context: string, level: LogLevel, datetimePattern: string, datetimeLocale: string, prefixPattern: string) {
+    private maybeApplySprintf(args) {
+        const sprintfAvailable: boolean = typeof sprintf !== 'undefined';
+        const sprintfCandidate = sprintfAvailable && args.length >= 2 && typeof args[0] === 'string' && args[0].indexOf('%') !== -1;
+        if (sprintfCandidate) {
+            try {
+                // apply sprintf with the proper arguments
+                const placeholderCount = this.countSprintfHolders(args[0]);
+                if (placeholderCount > 0) {
+                    args[0] = sprintf.apply(null, args);
+                    args.splice(1, placeholderCount); // remove arguments consumed by sprintf
+                }
+            }
+            catch (e) {
+                // invalid arguments passed into sprintf, continue without applying
+                args.unshift(e);
+            }
+        }
+        
+        return args;
+    }
+    
+    private generatePrefix(context: string, level: LogLevel, config:LoggingConfig) {
         let dateStr: string = '';
         if (typeof moment !== 'undefined') {
-            dateStr = moment().locale(datetimeLocale).format(datetimePattern);
+            dateStr = moment().locale(config.datetimeLocale).format(config.datetimePattern);
         } else {
             const d: Date = new Date();
             const timeStr: string = new Date().toTimeString().match(/^([0-9]{2}:[0-9]{2}:[0-9]{2})/)[0];
@@ -75,7 +74,7 @@ class LoggerBase {
         }
         
         if (typeof sprintf !== 'undefined') {
-            return sprintf(prefixPattern, dateStr, context, level.name.toLowerCase());
+            return sprintf(config.prefixPattern, dateStr, context, level.name.toLowerCase());
         } else {
             // use fixed layout: '%s::[%s]%s> '
             return dateStr + '::' + context + '::' + level.name.toLowerCase() + '> ';
@@ -111,9 +110,23 @@ export class Logger extends LoggerBase {
         super();
     }
     
-    readonly trace: (message?:any, ...rest: any[]) => Array<any> = () => this.log(Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
-    readonly debug: (...rest: any[]) => Array<any> = () => this.log(Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
-    readonly info: (...rest: any[]) => Array<any> = () => this.log(Logger.console.info, LogLevel.INFO, this.context, this.config);
-    readonly warn: (...rest: any[]) => Array<any> = () => this.log(Logger.console.warn, LogLevel.WARN, this.context, this.config);
-    readonly error: (...rest: any[]) => Array<any> = () => this.log(Logger.console.error, LogLevel.ERROR, this.context, this.config);
+    trace(message?: any, ...rest: any[]): Array<any> {
+        return this.log(arguments, Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+    }
+    
+    debug(message?: any, ...rest: any[]): Array<any> {
+        return this.log(arguments, Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+    }
+    
+    info(message?: any, ...rest: any[]): Array<any> {
+        return this.log(arguments, Logger.console.info, LogLevel.INFO, this.context, this.config);
+    }
+    
+    warn(message?: any, ...rest: any[]): Array<any> {
+        return this.log(arguments, Logger.console.warn, LogLevel.WARN, this.context, this.config);
+    }
+    
+    error(message?: any, ...rest: any[]): Array<any> {
+        return this.log(arguments, Logger.console.error, LogLevel.ERROR, this.context, this.config);
+    }
 }
