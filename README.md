@@ -6,7 +6,7 @@
 // this example: resuable logging service, which overrides all static defaults and provides own logging contexts
 
 let ls:LoggingService = new LoggingService(new LoggingConfig(
-    /* optional prefixPattern = */ '<%s::[%s]> ', // default is '%s::[%s]> '
+    /* optional prefixPattern = */ undefined, // defaults to '%s::[%s]> '
     /* optional datetimePattern = */ 'dddd h:mm:ss a', // default is 'LLL'
     /* optional datetimeLocale = */ 'en', // default is window.navigator.language || 'en'
     /* optional logLevels = */ [ // default is '*': TRACE
