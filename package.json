@@ -18,7 +18,7 @@
     "email": "benny@bennybottema.com",
     "url": "http://www.bennybottema.com"
   },
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "scripts": {
     "clean": "rimraf dist-umd dist-commonjs dist-esmodule",
     "build": "npm run clean && tsc && tsc -m es6 --outDir dist-esmodule && webpack --colors --progress --display-error-details --display-cached"
