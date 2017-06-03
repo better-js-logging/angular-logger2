@@ -16,3 +16,5 @@ engines:
         enabled: false
       array-type:
         enabled: false
+      max-line-length:
+        enabled: false
