@@ -38,7 +38,6 @@ ls.getInstance('main.subB').info('Hello %s!', 'World', { 'extra': ['pass-through
 
 ---
 
-<a name='about'/>
 ## About
 
 This library gives your angular app proper logging capabilities (and non-angular apps for simple usage). Although you can configure patterns and logging level priorities, it also simply works as a simple drop-in completely configured with sensible defaults ([demo](https://jsfiddle.net/plantface/b0v0s2rg/)).
@@ -48,7 +47,6 @@ This library gives your angular app proper logging capabilities (and non-angular
 * Introduces **log levels**, where you can manage logging output per context or even a group of contexts
 * Works as a **injectable or standalone** service or as a **complete drop-in** replacement for your current [`console.log` statements][console-logger]
 
-<a name='installing'/>
 ## Installing
 
 ```
@@ -62,10 +60,10 @@ npm install sprintf-js --save
 npm install moment --save
 ```
 
-<a name='getting-started'/>
 ## Getting Started
 
 ### importing types
+
 First you need to decide if you wish to use the commonjs, esmodule or UMD module versions. The demo uses commonjs:
 
 import { LoggingService, LoggingConfig, ContextLogLevel, LogLevel } from 'angular-logger2/dist-commonjs/index.js';
@@ -132,9 +130,8 @@ myLoggingService.getLogger('custom context', 'custom prefixpattern');
     }
     ```
 
-<a name='applying-patterns'/>
 ## Applying Patterns
-<a name='prefix-pattern'/>
+
 #### Prefix pattern
 
 By default, the prefix is formatted like so (if sprintf-js is present):
@@ -177,7 +174,6 @@ You can also remove it completely, or have just the datetime stamp or just the c
 
 This works because angular-logger2 will use three arguments context, timestamp and loglevel for the prefix, which can be referenced by index.
 
-<a name='datetime-stamp-patterns'/>
 #### Datetime stamp patterns
 
 If you have included _momentjs_ in your dependencies, you can start using datetime stamp patterns with angular-logger2. The default pattern is `LLL`, which translates to a localized string that matches the current user's Locale. You customize the pattern as follows:
@@ -194,7 +190,6 @@ A pattern like `dddd h:mm:ss a` would translate to something like "Sunday 12:55:
 
  * For all options, see [moment.js](http://momentjs.com/docs/#/displaying/)
 
-<a name='logging-patterns'/>
 #### Logging patterns
 
 If you have included _sprintf-js_ in your dependencies, you can start using patterns with _angular-logger2_.
@@ -234,7 +229,6 @@ logger.info("What about delaying creating objects until %j?", function() { retur
 
  * For all options, see [sprintf.js](https://github.com/alexei/sprintf.js)
 
-<a name='managing-logging-priority'/>
 ## Managing logging priority
 
 Using logging levels, we can manage output on several levels. Contexts can be named using dot '.' notation, where the names before dots are interpreted as groups or packages.
