@@ -62,7 +62,7 @@ npm install moment --save
 
 ## Getting Started
 
-### importing types
+### Importing the library types
 
 First you need to decide if you wish to use the commonjs, esmodule or UMD module versions. The demo uses commonjs:
 
