@@ -285,5 +285,5 @@ const loggingService:LoggingService = new LoggingService(new LoggingConfig(
 [codeclimate-gpa-image]: https://codeclimate.com/github/better-js-logging/angular-logger2/badges/gpa.svg
 
 [codacy-url]: https://www.codacy.com/app/b-bottema/angular-logger2/dashboard
-[codacy-image]: https://www.codacy.com/project/badge/5ff91ac272a74fc8b67fd44f3b333408
-[codacy-shields-image]: https://img.shields.io/codacy/5ff91ac272a74fc8b67fd44f3b333408.svg?style=flat
+[codacy-image]: https://www.codacy.com/project/badge/b23f651a897e4af99ced8534adeaa401
+[codacy-shields-image]: https://img.shields.io/codacy/b23f651a897e4af99ced8534adeaa401.svg?style=flat
