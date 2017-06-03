@@ -1,7 +1,7 @@
 {
   "name": "angular-logger2",
   "version": "1.0.0",
-  "description": "Example of TypeScript library setup for multiple compilation targets using tsc and webpack",
+  "description": "> A proper logging framework, including advanced patterns and level management",
   "main": "dist-commonjs/index.js",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "email": "benny@bennybottema.com",
     "url": "http://www.bennybottema.com"
   },
-  "license": "Apache",
+  "license": "Apache 2.0",
   "scripts": {
     "clean": "rimraf dist-umd dist-commonjs dist-esmodule",
     "build": "npm run clean && tsc && tsc -m es6 --outDir dist-esmodule && webpack --colors --progress --display-error-details --display-cached"
