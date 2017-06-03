@@ -21,6 +21,11 @@ ls.getInstance('main.subA').info('Hello World!'); // ignored, doesn't pass loggi
 ls.getInstance('main.subB').trace('Hello World!'); // <17-5-2015 11:52:52::[main.subB]> Hello World!
 ls.getInstance('main.subB').info('Hello %s!', 'World', { 'extra': ['pass-through params'] });
 // <3-6-2017 11:53:51::[main.subB]> Hello World! Object { "extra": "pass-through params"}
+
+// or java style:
+class YourClass {
+    private static readonly LOGGER:Logger = LoggingService.getLogger('YourClass');
+}
 ```
 
 ### [WORKING DEMO](http://plnkr.co/edit/ZZVA5nmyKpEWxztchYMx?p=preview)
