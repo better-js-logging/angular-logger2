@@ -29,8 +29,6 @@ ls.getInstance('main.subB').info('Hello %s!', 'World', { 'extra': ['pass-through
 
 - [About](#about)
 - [Installing](#installing)
-		- [Bower](#bower)
-		- [Manually](#manually)
 - [Getting Started](#getting-started)
 - [Applying Patterns](#applying-patterns)
 		- [Prefix pattern](#prefix-pattern)
