@@ -24,7 +24,7 @@ ls.getInstance('main.subB').info('Hello %s!', 'World', { 'extra': ['pass-through
 
 // or java style:
 class YourClass {
-    private static readonly LOGGER:Logger = LoggingService.getLogger('YourClass');
+    private static readonly LOGGER:Logger = LoggingService.getLogger(YourClass.name);
 }
 ```
 
