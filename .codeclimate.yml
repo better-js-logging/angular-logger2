@@ -11,3 +11,7 @@ engines:
   tslint:
     enabled: true
     channel: beta
+    checks:
+      eofline:
+        enabled: false
+      "array-type": [true, "generic"]
