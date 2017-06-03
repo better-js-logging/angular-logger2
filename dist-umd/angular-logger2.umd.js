@@ -326,7 +326,7 @@ var logging_logger_1 = __webpack_require__(2);
 var LoggingService = LoggingService_1 = (function () {
     function LoggingService(config) {
         this.config = config;
-        console.info('got config injected:', config);
+        console.debug('creating new LoggingService... got config injected:', config);
         this.config = new logging_types_1.LoggingConfig((config && config.prefixPattern) || LoggingService_1.DEFAULT_CONFIG.prefixPattern, (config && config.datetimePattern) || LoggingService_1.DEFAULT_CONFIG.datetimePattern, (config && config.datetimeLocale) || LoggingService_1.DEFAULT_CONFIG.datetimeLocale, (config && config.contextLogLevels) || LoggingService_1.DEFAULT_CONFIG.contextLogLevels);
     }
     /**
