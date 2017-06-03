@@ -6,10 +6,10 @@
 // this example: resuable logging service, which overrides all static defaults and provides own logging contexts
 
 let ls:LoggingService = new LoggingService(new LoggingConfig(
-    /* optional prefixPattern = */ '%s::[%s]> ',
-    /* optional datetimePattern = */ 'dddd h:mm:ss a',
-    /* optional datetimeLocale = */ window.navigator.language || 'en',
-    /* optional logLevels = */ [
+    /* optional prefixPattern = */ '<%s::[%s]> ', // default is '%s::[%s]> '
+    /* optional datetimePattern = */ 'dddd h:mm:ss a', // default is 'LLL'
+    /* optional datetimeLocale = */ 'en', // default is window.navigator.language || 'en'
+    /* optional logLevels = */ [ // default is '*': TRACE
         new ContextLogLevel('*', LogLevel.OFF),
         new ContextLogLevel('main', LogLevel.WARN),
         new ContextLogLevel('main.subB', LogLevel.TRACE)
@@ -18,9 +18,9 @@ let ls:LoggingService = new LoggingService(new LoggingConfig(
 
 ls.getInstance('banana').info('Hello World!'); // ignored, logging turned off for '*'
 ls.getInstance('main.subA').info('Hello World!'); // ignored, doesn't pass logging threshold of 'main'
-ls.getInstance('main.subB').trace('Hello World!'); // 17-5-2015 11:52:52::[main.subB]> Hello World!
+ls.getInstance('main.subB').trace('Hello World!'); // <17-5-2015 11:52:52::[main.subB]> Hello World!
 ls.getInstance('main.subB').info('Hello %s!', 'World', { 'extra': ['pass-through params'] });
-// 3-6-2017 11:53:51::[main.subB]> Hello World! Object { "extra": "pass-through params"}
+// <3-6-2017 11:53:51::[main.subB]> Hello World! Object { "extra": "pass-through params"}
 ```
 
 ### [WORKING DEMO](http://plnkr.co/edit/ZZVA5nmyKpEWxztchYMx?p=preview)
