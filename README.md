@@ -139,7 +139,7 @@ By default, the prefix is formatted like so (if sprintf-js is present):
 ```javascript
 datetime here::[context name here]>your logging input here
 
-// if sprintf.js is missing, angular-logger defaults back to a fixed pattern that does include the used loglevel:
+// if sprintf.js is missing, angular-logger2 defaults back to a fixed pattern that does include the used loglevel:
 datetime here::context name here::loglevel used here>your logging input here
 ```
 
@@ -282,7 +282,7 @@ const loggingService:LoggingService = new LoggingService(new LoggingConfig(
 [travis-image]: https://img.shields.io/travis/better-js-logging/angular-logger2.svg?style=flat
 
 [codeclimate-url]: https://codeclimate.com/github/better-js-logging/angular-logger2
-[codeclimate-gpa-image]: https://codeclimate.com/github/better-js-logging/angular-logge2r/badges/gpa.svg
+[codeclimate-gpa-image]: https://codeclimate.com/github/better-js-logging/angular-logger2/badges/gpa.svg
 
 [codacy-url]: https://www.codacy.com/app/b-bottema/angular-logger2/dashboard
 [codacy-image]: https://www.codacy.com/project/badge/5ff91ac272a74fc8b67fd44f3b333408
