@@ -1,9 +1,10 @@
-const sprintf = require('sprintf-js').sprintf;
+import * as sprintfjs from 'sprintf-js';
+const sprintf = sprintfjs.sprintf;
 import * as moment from "moment";
 import {ContextLogLevel, LoggingConfig, LogLevel} from "./logging.types";
 import requireConsole from "./console";
 
-class LoggerBase {
+export class LoggerBase {
     protected log(args: IArguments, loggingFunc, level: LogLevel, context, config): Array<any> {
         if (this.levelPassesThreshold(context, level, config)) {
             const enhancedArguments = this.enhanceLogline(args, context, level, config);

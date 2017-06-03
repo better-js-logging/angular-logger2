@@ -1,31 +1,39 @@
 {
   "name": "angular-logger2",
   "version": "1.0.0",
+  "description": "Example of TypeScript library setup for multiple compilation targets using tsc and webpack",
+  "main": "dist-commonjs/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/better-js-logging/angular-logger2"
+  },
+  "keywords": [
+    "angular",
+    "logger",
+    "logging",
+    "angular-logger2"
+  ],
+  "author": {
+    "name": "Benny Bottema",
+    "email": "benny@bennybottema.com",
+    "url": "http://www.bennybottema.com"
+  },
+  "license": "Apache",
   "scripts": {
-    "build": "rimraf dist && webpack --colors --progress --display-error-details --display-cached"
+    "clean": "rimraf dist-umd dist-commonjs dist-esmodule",
+    "build": "npm run clean && tsc && tsc -m es6 --outDir dist-esmodule && webpack --colors --progress --display-error-details --display-cached"
   },
   "dependencies": {
-    "@angular/common": "4.1.0",
-    "@angular/compiler": "4.1.0",
     "@angular/core": "4.1.0",
-    "@angular/upgrade": "4.1.0",
-    "angular-in-memory-web-api": "0.3.1",
-    "core-js": "^2.4.1",
     "moment": "^2.18.1",
-    "rxjs": "^5.0.1",
-    "sprintf-js": "^1.0.3",
-    "zone.js": "0.8.9"
+    "sprintf-js": "^1.0.3"
   },
   "devDependencies": {
-    "@types/node": "7.0.14",
     "awesome-typescript-loader": "3.1.2",
-    "bintools": "0.1.2",
-    "file-loader": "^0.11.1",
-    "raw-loader": "^0.5.1",
     "rimraf": "2.6.1",
-    "to-string-loader": "^1.1.4",
     "typescript": "2.3.1",
     "webpack": "2.4.1",
-    "webpack-merge": "4.1.0"
+    "rxjs": "^5.0.1",
+    "zone.js": "0.8.9"
   }
 }

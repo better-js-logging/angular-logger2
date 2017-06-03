@@ -2,3 +2,6 @@
 /npm-debug.log
 /typings/
 .idea/
+dist-commonjs
+dist-esmodule
+dist-umd

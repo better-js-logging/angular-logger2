@@ -1,7 +1,5 @@
-import {NgModule, enableProdMode} from '@angular/core'
-import {LoggingService} from './logging.service'
-
-enableProdMode();
+import {NgModule} from "@angular/core";
+import {LoggingService} from "./logging.service";
 
 @NgModule({
     providers: [LoggingService]
