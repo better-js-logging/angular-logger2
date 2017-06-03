@@ -14,4 +14,3 @@ engines:
     checks:
       eofline:
         enabled: false
-      "array-type": [true, "generic"]
