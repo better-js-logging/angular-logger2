@@ -1,0 +1,13 @@
+languages:
+  Ruby: false
+  JavaScript: true
+  PHP: false
+  Python: false
+exclude_paths:
+  - "dist-commonjs"
+  - "dist-esmodule"
+  - "dist-umd"
+engines:
+  tslint:
+    enabled: true
+    channel: beta
