@@ -1,6 +1,6 @@
-import {Inject, Injectable, Optional} from "@angular/core";
-import {ContextLogLevel, LoggingConfig, LogLevel} from "./logging.types";
-import {Logger} from "./logging.logger";
+import {Inject, Injectable, Optional} from '@angular/core';
+import {ContextLogLevel, LoggingConfig, LogLevel} from './logging.types';
+import {Logger} from './logging.logger';
 
 @Injectable()
 export class LoggingService {
