@@ -1,4 +1,4 @@
-import { LoggingConfig, LogLevel } from "./logging.types";
+import { LoggingConfig, LogLevel } from './logging.types';
 export declare class LoggerBase {
     protected log(args: IArguments, loggingFunc: any, level: LogLevel, context: any, config: any): Array<any>;
     private levelPassesThreshold(context, logLevel, config);
@@ -7,7 +7,7 @@ export declare class LoggerBase {
     private enhanceLogline(args, context, logLevel, config);
     private maybeApplySprintf(args);
     private generatePrefix(context, level, config);
-    private countSprintfHolders;
+    private countSprintfHolders(pattern);
 }
 export declare class Logger extends LoggerBase {
     private readonly context;

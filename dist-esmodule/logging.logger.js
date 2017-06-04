@@ -10,26 +10,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import * as sprintfjs from 'sprintf-js';
 var sprintf = sprintfjs.sprintf;
-import * as moment from "moment";
-import { LogLevel } from "./logging.types";
-import requireConsole from "./console";
+import * as moment from 'moment';
+import { LogLevel } from './logging.types';
+import requireConsole from './console';
 var LoggerBase = (function () {
     function LoggerBase() {
-        this.countSprintfHolders = function (pattern) {
-            var hasNamedHolders = /\x25\([a-zA-Z0-9_]+\)[b-fijosuxX]/.test(pattern);
-            if (hasNamedHolders) {
-                return 1;
-            }
-            var placeholderCounter = 0;
-            function f(index) {
-                return function () {
-                    // keep track of highest arg index, needed for single -but indexed- placeholders placeholder (ie. %6$s consumes the first 6 arguments)
-                    placeholderCounter = Math.max(placeholderCounter, index);
-                };
-            }
-            sprintf(pattern, f(1), f(2), f(3), f(4), f(5), f(6), f(7), f(8), f(9), f(10));
-            return placeholderCounter;
-        };
     }
     LoggerBase.prototype.log = function (args, loggingFunc, level, context, config) {
         if (this.levelPassesThreshold(context, level, config)) {
@@ -41,7 +26,6 @@ var LoggerBase = (function () {
             return null; // no log produced
         }
     };
-    ;
     LoggerBase.prototype.levelPassesThreshold = function (context, logLevel, config) {
         return logLevel.level > LogLevel.OFF.level && logLevel.level <= this.getLogLevelThreshold(context, config).level;
     };
@@ -103,6 +87,22 @@ var LoggerBase = (function () {
             return dateStr + '::' + context + '::' + level.name.toLowerCase() + '> ';
         }
     };
+    LoggerBase.prototype.countSprintfHolders = function (pattern) {
+        var hasNamedHolders = /\x25\([a-zA-Z0-9_]+\)[b-fijosuxX]/.test(pattern);
+        if (hasNamedHolders) {
+            return 1;
+        }
+        var placeholderCounter = 0;
+        function f(index) {
+            // keep track of highest arg index, needed for single -but indexed- placeholders placeholder (ie. %6$s consumes the first 6 arguments)
+            return function () { return placeholderCounter = Math.max(placeholderCounter, index); };
+        }
+        // this scary approach makes use of sprintf's function argument style, so we can check  how many arguments
+        // sprintf is trying to fill in by calling our function f(). Then we know how many placeholders there are.
+        sprintf(pattern, f(1), f(2), f(3), f(4), f(5), f(6), f(7), f(8), f(9), f(10));
+        return placeholderCounter;
+    };
+    ;
     return LoggerBase;
 }());
 export { LoggerBase };

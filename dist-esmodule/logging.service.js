@@ -10,9 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Inject, Injectable, Optional } from "@angular/core";
-import { ContextLogLevel, LoggingConfig, LogLevel } from "./logging.types";
-import { Logger } from "./logging.logger";
+import { Inject, Injectable, Optional } from '@angular/core';
+import { ContextLogLevel, LoggingConfig, LogLevel } from './logging.types';
+import { Logger } from './logging.logger';
 var LoggingService = LoggingService_1 = (function () {
     function LoggingService(config) {
         this.config = config;

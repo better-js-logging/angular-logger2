@@ -42,7 +42,7 @@ export class LoggerBase {
         return [prefix].concat([].slice.call(processedArgs));
     }
     
-    private maybeApplySprintf(args) {
+    private maybeApplySprintf(args: any[]) {
         const sprintfAvailable: boolean = typeof sprintf !== 'undefined';
         const sprintfCandidate = sprintfAvailable && args.length >= 2 && typeof args[0] === 'string' && args[0].indexOf('%') !== -1;
         if (sprintfCandidate) {
@@ -80,7 +80,7 @@ export class LoggerBase {
         }
     }
     
-    private countSprintfHolders = function(pattern) {
+    private countSprintfHolders(pattern: string) {
         const hasNamedHolders = /\x25\([a-zA-Z0-9_]+\)[b-fijosuxX]/.test(pattern);
         if (hasNamedHolders) {
             return 1;
@@ -88,13 +88,13 @@ export class LoggerBase {
         
         let placeholderCounter = 0;
         
-        function f(index) {
-            return function() {
-                // keep track of highest arg index, needed for single -but indexed- placeholders placeholder (ie. %6$s consumes the first 6 arguments)
-                placeholderCounter = Math.max(placeholderCounter, index);
-            };
+        function f(index: number) {
+            // keep track of highest arg index, needed for single -but indexed- placeholders placeholder (ie. %6$s consumes the first 6 arguments)
+            return ():any => placeholderCounter = Math.max(placeholderCounter, index);
         }
         
+        // this scary approach makes use of sprintf's function argument style, so we can check  how many arguments
+        // sprintf is trying to fill in by calling our function f(). Then we know how many placeholders there are.
         sprintf(pattern, f(1), f(2), f(3), f(4), f(5), f(6), f(7), f(8), f(9), f(10));
         return placeholderCounter;
     };

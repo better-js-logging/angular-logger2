@@ -1,5 +1,5 @@
-import { LoggingConfig, LogLevel } from "./logging.types";
-import { Logger } from "./logging.logger";
+import { LoggingConfig, LogLevel } from './logging.types';
+import { Logger } from './logging.logger';
 export declare class LoggingService {
     private readonly config;
     private static readonly DEFAULT_CONFIG;
