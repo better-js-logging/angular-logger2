@@ -40,7 +40,7 @@ class YourClass {
 		- [Datetime stamp patterns](#datetime-stamp-patterns)
 		- [Logging patterns](#logging-patterns)
 - [Managing logging priority](#managing-logging-priority)
-- [Reusable LoggingService instance outside of Angular](#reusable-loggingService-instance-outside-of-angular)
+- [Reusable LoggingService instance outside of Angular](#reusable-loggingservice-instance-outside-of-angular)
 
 ---
 
@@ -298,7 +298,7 @@ const loggingService:LoggingService = new LoggingService(new LoggingConfig(
 
 [working demo](http://plnkr.co/edit/zs0WFq?p=preview)
 
-## Reusable LoggingService instance outside of Angular
+## Reusable `LoggingService` instance outside of Angular
 
 You can have an injectable `LoggingService` instance configured as _provider_, but that doesn't mean you can use the same instance outside of Angular.
 
