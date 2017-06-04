@@ -40,6 +40,7 @@ class YourClass {
 		- [Datetime stamp patterns](#datetime-stamp-patterns)
 		- [Logging patterns](#logging-patterns)
 - [Managing logging priority](#managing-logging-priority)
+- [Reusable LoggingService instance outside of Angular](#reusable-loggingService-instance-outside-of-angular)
 
 ---
 
@@ -183,13 +184,13 @@ You can even align the values within the pattern using _sprintf_. Here's a compl
 
 ```javascript
 // '%1$s %3$5s %2$-30s' ->
-// June 4, 2017 10:16 AM  info MyService                      In this example the loglevels are ligned right, with padding
+// June 4, 2017 10:16 AM  info MyService                      In this example the loglevels are aligned right, with padding
 // June 4, 2017 10:16 AM error MyReader                       The contexts (class names in this case) are aligned left
 // June 4, 2017 10:16 AM  info MyVeryLongServiceFactoryName   Also includes the loglevel (3rd  '%s'), switched places with the context
 ```
 
 
----|Pattern explanation for the third placeholder "%2$-30s"
+pattern|explanation
 ---|---
 %s      | indicates a string format
 %2$s    | indicates a string format with argument 2
@@ -271,8 +272,8 @@ The level's order are as follows:
 ```
   1. TRACE: displays all levels, is the finest output and only recommended during debugging
   2. DEBUG: display all but the finest logs, only recommended during develop stages
-  3. INFO :  Show info, warn and error messages
-  4. WARN :  Show warn and error messages
+  3. INFO : Show info, warn and error messages
+  4. WARN : Show warn and error messages
   5. ERROR: Show only error messages.
   6. OFF  : Disable all logging, recommended for silencing noisy logging during debugging. *will* surpress errors logging.
 ```
@@ -296,6 +297,44 @@ const loggingService:LoggingService = new LoggingService(new LoggingConfig(
 ```
 
 [working demo](http://plnkr.co/edit/zs0WFq?p=preview)
+
+## Reusable LoggingService instance outside of Angular
+
+You can have an injectable `LoggingService` instance configured as _provider_, but that doesn't mean you can use the same instance outside of Angular.
+
+Here's one example how to have a one single truth:
+
+```typescript
+/// defaultLoggingService.ts
+import {ContextLogLevel, LoggingConfig, LoggingService, LogLevel} from "angular-logger2/dist-esmodule";
+
+const defaultLoggingConfig:LoggingConfig = new LoggingConfig('%1$s %3$5s %2$-30s', undefined, undefined, [
+    new ContextLogLevel('EditorRouteResolver', LogLevel.INFO)
+]);
+
+const defaultLoggingService:LoggingService = new LoggingService(defaultLoggingConfig);
+export default defaultLoggingService;
+
+
+/// YourAppModule.ts
+import defaultLoggingService from "./defaultLoggingService";
+
+@NgModule({
+    (..)
+    providers: [{provide: LoggingService, useValue: defaultLoggingService}]
+})
+
+
+/// YourNonAngularClass.ts
+import defaultLoggingService from "./defaultLoggingService";
+
+// const logger = defaultLoggingService.getLogger(YourNonAngularClass.name);
+// or:
+class YourNonAngularClass {
+    private static readonly LOGGER:Logger = defaultLoggingService.getLogger(YourNonAngularClass.name);
+}
+```
+
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
