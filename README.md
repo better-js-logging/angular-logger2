@@ -308,9 +308,7 @@ Here's one example how to have a one single truth:
 /// defaultLoggingService.ts
 import {ContextLogLevel, LoggingConfig, LoggingService, LogLevel} from "angular-logger2/dist-esmodule";
 
-const defaultLoggingConfig:LoggingConfig = new LoggingConfig('%1$s %3$5s %2$-30s', undefined, undefined, [
-    new ContextLogLevel('EditorRouteResolver', LogLevel.INFO)
-]);
+const defaultLoggingConfig:LoggingConfig = new LoggingConfig('%1$s %3$5s %2$-30s' /* , other config... */);
 
 const defaultLoggingService:LoggingService = new LoggingService(defaultLoggingConfig);
 export default defaultLoggingService;
