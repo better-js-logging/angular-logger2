@@ -341,7 +341,7 @@ class YourNonAngularClass {
 [travis-image]: https://img.shields.io/travis/better-js-logging/angular-logger2.svg?style=flat
 
 [codeclimate-url]: https://codeclimate.com/github/better-js-logging/angular-logger2
-[codeclimate-gpa-image]: https://codeclimate.com/github/better-js-logging/angular-logger2/badges/gpa.svg
+[codeclimate-gpa-image]: https://codeclimate.com/github/better-js-logging/angular-logger2/badges/issue_count.svg
 
 [codacy-url]: https://www.codacy.com/app/b-bottema/angular-logger2/dashboard
 [codacy-image]: https://www.codacy.com/project/badge/b23f651a897e4af99ced8534adeaa401
