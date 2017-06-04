@@ -90,14 +90,14 @@ export class LoggerBase {
         
         function f(index: number) {
             // keep track of highest arg index, needed for single -but indexed- placeholders placeholder (ie. %6$s consumes the first 6 arguments)
-            return ():any => placeholderCounter = Math.max(placeholderCounter, index);
+            return (): any => placeholderCounter = Math.max(placeholderCounter, index);
         }
         
         // this scary approach makes use of sprintf's function argument style, so we can check  how many arguments
         // sprintf is trying to fill in by calling our function f(). Then we know how many placeholders there are.
         sprintf(pattern, f(1), f(2), f(3), f(4), f(5), f(6), f(7), f(8), f(9), f(10));
         return placeholderCounter;
-    };
+    }
 }
 
 export class Logger extends LoggerBase {
