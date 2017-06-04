@@ -18,3 +18,5 @@ engines:
         enabled: false
       max-line-length:
         enabled: false
+      max-classes-per-file:
+        enabled: false
