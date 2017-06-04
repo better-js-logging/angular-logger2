@@ -1,8 +1,8 @@
 import * as sprintfjs from 'sprintf-js';
 const sprintf = sprintfjs.sprintf;
-import * as moment from "moment";
-import {ContextLogLevel, LoggingConfig, LogLevel} from "./logging.types";
-import requireConsole from "./console";
+import * as moment from 'moment';
+import {ContextLogLevel, LoggingConfig, LogLevel} from './logging.types';
+import requireConsole from './console';
 
 export class LoggerBase {
     protected log(args: IArguments, loggingFunc, level: LogLevel, context, config): Array<any> {
@@ -10,11 +10,10 @@ export class LoggerBase {
             const enhancedArguments = this.enhanceLogline(args, context, level, config);
             loggingFunc.apply(null, enhancedArguments);
             return enhancedArguments; // return for testing purposes
-        }
-        else {
+        } else {
             return null; // no log produced
         }
-    };
+    }
     
     private levelPassesThreshold(context: string, logLevel: LogLevel, config: LoggingConfig): boolean {
         return logLevel.level > LogLevel.OFF.level && logLevel.level <= this.getLogLevelThreshold(context, config).level;
@@ -54,8 +53,7 @@ export class LoggerBase {
                     args[0] = sprintf.apply(null, args);
                     args.splice(1, placeholderCount); // remove arguments consumed by sprintf
                 }
-            }
-            catch (e) {
+            } catch (e) {
                 // invalid arguments passed into sprintf, continue without applying
                 args.unshift(e);
             }
@@ -64,7 +62,7 @@ export class LoggerBase {
         return args;
     }
     
-    private generatePrefix(context: string, level: LogLevel, config:LoggingConfig) {
+    private generatePrefix(context: string, level: LogLevel, config: LoggingConfig) {
         let dateStr: string = '';
         if (typeof moment !== 'undefined') {
             dateStr = moment().locale(config.datetimeLocale).format(config.datetimePattern);
@@ -82,7 +80,7 @@ export class LoggerBase {
         }
     }
     
-    private countSprintfHolders = function (pattern) {
+    private countSprintfHolders = function(pattern) {
         const hasNamedHolders = /\x25\([a-zA-Z0-9_]+\)[b-fijosuxX]/.test(pattern);
         if (hasNamedHolders) {
             return 1;
