@@ -312,8 +312,8 @@ const defaultLoggingConfig:LoggingConfig = new LoggingConfig('%1$s %3$5s %2$-30s
 
 const defaultLoggingService:LoggingService = new LoggingService(defaultLoggingConfig);
 export default defaultLoggingService;
-
-
+```
+```typescript
 /// YourAppModule.ts
 import defaultLoggingService from "./defaultLoggingService";
 
@@ -321,8 +321,8 @@ import defaultLoggingService from "./defaultLoggingService";
     (..)
     providers: [{provide: LoggingService, useValue: defaultLoggingService}]
 })
-
-
+```
+```typescript
 /// YourNonAngularClass.ts
 import defaultLoggingService from "./defaultLoggingService";
 
