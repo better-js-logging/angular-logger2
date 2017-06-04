@@ -148,7 +148,7 @@ datetime here::[context name here]>your logging input here
 datetime here::context name here::loglevel used here>your logging input here
 ```
 
-However, you can change this as follows:
+However, the patter is very flexible. For example, you can change this as follows:
 
 ```javascript
 // prefix pattern '%s - %s: '
@@ -178,6 +178,23 @@ You can also remove it completely, or have just the datetime stamp or just the c
 ```
 
 This works because angular-logger2 will use three arguments context, timestamp and loglevel for the prefix, which can be referenced by index.
+
+You can even align the values within the pattern using _sprintf_. Here's a complete example of all possibilities:
+
+```javascript
+// '%1$s %3$5s %2$-30s' ->
+// June 4, 2017 10:16 AM  info MyService                      In this example the loglevels are ligned right, with padding
+// June 4, 2017 10:16 AM error MyReader                       The contexts (class names in this case) are aligned left
+// June 4, 2017 10:16 AM  info MyVeryLongServiceFactoryName   Also includes the loglevel (3rd  '%s'), switched places with the context
+```
+
+
+---|Pattern explanation for the third placeholder "%2$-30s"
+---|---
+%s      | indicates a string format
+%2$s    | indicates a string format with argument 2
+%2$30s  | indicates a string format with argument 2 padding to be minimally 30 long
+%2$-30s | indicates a string format with argument 2 padding to be minimally 30 long, content aligned to the left
 
 #### Datetime stamp patterns
 
