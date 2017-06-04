@@ -326,7 +326,7 @@ import defaultLoggingService from "./defaultLoggingService";
 /// YourNonAngularClass.ts
 import defaultLoggingService from "./defaultLoggingService";
 
-// const logger = defaultLoggingService.getLogger(YourNonAngularClass.name);
+// const logger = defaultLoggingService.getLogger('some context');
 // or:
 class YourNonAngularClass {
     private static readonly LOGGER:Logger = defaultLoggingService.getLogger(YourNonAngularClass.name);
