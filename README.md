@@ -300,7 +300,7 @@ const loggingService:LoggingService = new LoggingService(new LoggingConfig(
 
 ## Reusable `LoggingService` instance outside of Angular
 
-You can have an injectable `LoggingService` instance configured as _provider_, but that doesn't mean you can use the same instance outside of Angular.
+You can have an injectable `LoggingService` instance configured as _provider_, but that doesn't mean you can't use the same instance outside of Angular.
 
 Here's one example how to have a one single truth:
 
