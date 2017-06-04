@@ -19,7 +19,9 @@ export class LoggingService {
     }
     
     constructor(@Inject(LoggingConfig) @Optional() private readonly config?: LoggingConfig) {
-        console.debug('creating new LoggingService... got config injected:', config);
+        if (config) {
+            console.debug('creating new LoggingService with injected config:', config);
+        }
         this.config = new LoggingConfig(
             (config && config.prefixPattern) || LoggingService.DEFAULT_CONFIG.prefixPattern,
             (config && config.datetimePattern) || LoggingService.DEFAULT_CONFIG.datetimePattern,
