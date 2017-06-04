@@ -89,7 +89,7 @@ export class LoggerBase {
         let placeholderCounter = 0;
         
         function f(index) {
-            return function () {
+            return function() {
                 // keep track of highest arg index, needed for single -but indexed- placeholders placeholder (ie. %6$s consumes the first 6 arguments)
                 placeholderCounter = Math.max(placeholderCounter, index);
             };
