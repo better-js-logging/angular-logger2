@@ -248,7 +248,6 @@ var LoggerBase = (function () {
         sprintf(pattern, f(1), f(2), f(3), f(4), f(5), f(6), f(7), f(8), f(9), f(10));
         return placeholderCounter;
     };
-    ;
     return LoggerBase;
 }());
 exports.LoggerBase = LoggerBase;
@@ -265,7 +264,7 @@ var Logger = (function (_super) {
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.debug, logging_types_1.LogLevel.DEBUG, this.context, this.config);
+        return this.log(arguments, Logger.console.trace, logging_types_1.LogLevel.TRACE, this.context, this.config);
     };
     Logger.prototype.debug = function (message) {
         var rest = [];
@@ -410,7 +409,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function requireConsole() {
     var noop = function () { return null; };
     return (typeof (console) !== 'undefined') ? console :
-        { log: noop, info: noop, debug: noop, warn: noop, error: noop };
+        { trace: noop, debug: noop, info: noop, warn: noop, error: noop };
 }
 exports.default = requireConsole;
 

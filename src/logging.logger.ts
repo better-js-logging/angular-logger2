@@ -102,7 +102,7 @@ export class LoggerBase {
 
 export class Logger extends LoggerBase {
     
-    private static console: { log, info, debug, warn, error } = requireConsole();
+    private static console: { trace, debug, info, warn, error } = requireConsole();
     
     constructor(private readonly context: string,
                 private readonly config: LoggingConfig) {
@@ -110,7 +110,7 @@ export class Logger extends LoggerBase {
     }
     
     trace(message?: any, ...rest: any[]): Array<any> {
-        return this.log(arguments, Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+        return this.log(arguments, Logger.console.trace, LogLevel.TRACE, this.context, this.config);
     }
     
     debug(message?: any, ...rest: any[]): Array<any> {
