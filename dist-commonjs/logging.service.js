@@ -18,7 +18,7 @@ var logging_logger_1 = require("./logging.logger");
 var LoggingService = LoggingService_1 = (function () {
     function LoggingService(config) {
         this.config = config;
-        if (config && typeof (console) !== 'undefined') {
+        if (config && typeof (console) !== 'undefined' && console && console.debug) {
             console.debug('creating new LoggingService with injected config:', config);
         }
         this.config = new logging_types_1.LoggingConfig((config && config.prefixPattern) || LoggingService_1.DEFAULT_CONFIG.prefixPattern, (config && config.datetimePattern) || LoggingService_1.DEFAULT_CONFIG.datetimePattern, (config && config.datetimeLocale) || LoggingService_1.DEFAULT_CONFIG.datetimeLocale, (config && config.contextLogLevels) || LoggingService_1.DEFAULT_CONFIG.contextLogLevels);
