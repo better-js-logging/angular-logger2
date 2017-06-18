@@ -19,7 +19,7 @@ export class LoggingService {
     }
     
     constructor(@Inject(LoggingConfig) @Optional() private readonly config?: LoggingConfig) {
-        if (config) {
+        if (config && typeof(console) !== 'undefined') {
             console.debug('creating new LoggingService with injected config:', config);
         }
         this.config = new LoggingConfig(
