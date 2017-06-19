@@ -1,6 +1,6 @@
 {
   "name": "angular-logger2",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "> A proper logging framework, including advanced patterns and level management",
   "main": "dist-commonjs/index.js",
   "repository": {
