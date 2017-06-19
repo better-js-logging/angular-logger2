@@ -118,35 +118,35 @@ var Logger = (function (_super) {
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.trace, LogLevel.TRACE, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.trace.apply(Logger.console, arguments); }, LogLevel.TRACE, this.context, this.config);
     };
     Logger.prototype.debug = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.debug.apply(Logger.console, arguments); }, LogLevel.DEBUG, this.context, this.config);
     };
     Logger.prototype.info = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.info, LogLevel.INFO, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.info.apply(Logger.console, arguments); }, LogLevel.INFO, this.context, this.config);
     };
     Logger.prototype.warn = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.warn, LogLevel.WARN, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.warn.apply(Logger.console, arguments); }, LogLevel.WARN, this.context, this.config);
     };
     Logger.prototype.error = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.error, LogLevel.ERROR, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.error.apply(Logger.console, arguments); }, LogLevel.ERROR, this.context, this.config);
     };
     return Logger;
 }(LoggerBase));

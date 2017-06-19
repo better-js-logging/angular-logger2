@@ -120,35 +120,35 @@ var Logger = (function (_super) {
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.trace, logging_types_1.LogLevel.TRACE, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.trace.apply(Logger.console, arguments); }, logging_types_1.LogLevel.TRACE, this.context, this.config);
     };
     Logger.prototype.debug = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.debug, logging_types_1.LogLevel.DEBUG, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.debug.apply(Logger.console, arguments); }, logging_types_1.LogLevel.DEBUG, this.context, this.config);
     };
     Logger.prototype.info = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.info, logging_types_1.LogLevel.INFO, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.info.apply(Logger.console, arguments); }, logging_types_1.LogLevel.INFO, this.context, this.config);
     };
     Logger.prototype.warn = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.warn, logging_types_1.LogLevel.WARN, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.warn.apply(Logger.console, arguments); }, logging_types_1.LogLevel.WARN, this.context, this.config);
     };
     Logger.prototype.error = function (message) {
         var rest = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             rest[_i - 1] = arguments[_i];
         }
-        return this.log(arguments, Logger.console.error, logging_types_1.LogLevel.ERROR, this.context, this.config);
+        return this.log(arguments, function () { Logger.console.error.apply(Logger.console, arguments); }, logging_types_1.LogLevel.ERROR, this.context, this.config);
     };
     return Logger;
 }(LoggerBase));

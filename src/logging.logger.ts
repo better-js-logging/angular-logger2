@@ -110,22 +110,22 @@ export class Logger extends LoggerBase {
     }
     
     trace(message?: any, ...rest: any[]): Array<any> {
-        return this.log(arguments, Logger.console.trace, LogLevel.TRACE, this.context, this.config);
+        return this.log(arguments, function() { Logger.console.trace.apply(Logger.console, arguments) }, LogLevel.TRACE, this.context, this.config);
     }
     
     debug(message?: any, ...rest: any[]): Array<any> {
-        return this.log(arguments, Logger.console.debug, LogLevel.DEBUG, this.context, this.config);
+        return this.log(arguments, function() { Logger.console.debug.apply(Logger.console, arguments) }, LogLevel.DEBUG, this.context, this.config);
     }
     
     info(message?: any, ...rest: any[]): Array<any> {
-        return this.log(arguments, Logger.console.info, LogLevel.INFO, this.context, this.config);
+        return this.log(arguments, function() { Logger.console.info.apply(Logger.console, arguments) }, LogLevel.INFO, this.context, this.config);
     }
     
     warn(message?: any, ...rest: any[]): Array<any> {
-        return this.log(arguments, Logger.console.warn, LogLevel.WARN, this.context, this.config);
+        return this.log(arguments, function() { Logger.console.warn.apply(Logger.console, arguments) }, LogLevel.WARN, this.context, this.config);
     }
     
     error(message?: any, ...rest: any[]): Array<any> {
-        return this.log(arguments, Logger.console.error, LogLevel.ERROR, this.context, this.config);
+        return this.log(arguments, function() { Logger.console.error.apply(Logger.console, arguments) }, LogLevel.ERROR, this.context, this.config);
     }
 }
