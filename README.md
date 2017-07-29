@@ -334,7 +334,7 @@ class YourNonAngularClass {
 ```
 
 
-[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-image]: https://img.shields.io/badge/license-apache%20v2-blue.svg?style=flat
 [license-url]: LICENSE
 
 [travis-url]: http://travis-ci.org/better-js-logging/angular-logger2
