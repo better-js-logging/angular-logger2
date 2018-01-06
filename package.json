@@ -24,9 +24,9 @@
     "build": "npm run clean && tsc && tsc -m es6 --outDir dist-esmodule && webpack --colors --progress --display-error-details --display-cached"
   },
   "dependencies": {
-    "@angular/core": "4.1.0",
-    "moment": "^2.18.1",
-    "sprintf-js": "^1.0.3"
+    "@angular/core": "^5.1.2",
+    "moment": "^2.20.1",
+    "sprintf-js": "^1.1.1"
   },
   "devDependencies": {
     "awesome-typescript-loader": "3.1.2",
