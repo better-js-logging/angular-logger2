@@ -15,7 +15,7 @@ var sprintf = sprintfjs.sprintf;
 var moment = require("moment");
 var logging_types_1 = require("./logging.types");
 var console_1 = require("./console");
-var LoggerBase = (function () {
+var LoggerBase = /** @class */ (function () {
     function LoggerBase() {
     }
     LoggerBase.prototype.log = function (args, loggingFunc, level, context, config) {
@@ -107,7 +107,7 @@ var LoggerBase = (function () {
     return LoggerBase;
 }());
 exports.LoggerBase = LoggerBase;
-var Logger = (function (_super) {
+var Logger = /** @class */ (function (_super) {
     __extends(Logger, _super);
     function Logger(context, config) {
         var _this = _super.call(this) || this;
@@ -150,8 +150,8 @@ var Logger = (function (_super) {
         }
         return this.log(arguments, function () { Logger.console.error.apply(Logger.console, arguments); }, logging_types_1.LogLevel.ERROR, this.context, this.config);
     };
+    Logger.console = console_1.default();
     return Logger;
 }(LoggerBase));
-Logger.console = console_1.default();
 exports.Logger = Logger;
 //# sourceMappingURL=logging.logger.js.map

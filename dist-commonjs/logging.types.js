@@ -10,35 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LoggingConfig = (function () {
+var LoggingConfig = /** @class */ (function () {
     function LoggingConfig(prefixPattern, datetimePattern, datetimeLocale, contextLogLevels) {
         this.prefixPattern = prefixPattern;
         this.datetimePattern = datetimePattern;
         this.datetimeLocale = datetimeLocale;
         this.contextLogLevels = contextLogLevels;
     }
+    LoggingConfig = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [String, String, String, Array])
+    ], LoggingConfig);
     return LoggingConfig;
 }());
-LoggingConfig = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [String, String, String, Array])
-], LoggingConfig);
 exports.LoggingConfig = LoggingConfig;
-var LogLevel = (function () {
+var LogLevel = /** @class */ (function () {
     function LogLevel(name, level) {
         this.name = name;
         this.level = level;
     }
+    LogLevel.TRACE = new LogLevel('TRACE', 4);
+    LogLevel.DEBUG = new LogLevel('DEBUG', 3);
+    LogLevel.INFO = new LogLevel('INFO', 2);
+    LogLevel.WARN = new LogLevel('WARN', 1);
+    LogLevel.ERROR = new LogLevel('ERROR', 0);
+    LogLevel.OFF = new LogLevel('OFF', -1);
     return LogLevel;
 }());
-LogLevel.TRACE = new LogLevel('TRACE', 4);
-LogLevel.DEBUG = new LogLevel('DEBUG', 3);
-LogLevel.INFO = new LogLevel('INFO', 2);
-LogLevel.WARN = new LogLevel('WARN', 1);
-LogLevel.ERROR = new LogLevel('ERROR', 0);
-LogLevel.OFF = new LogLevel('OFF', -1);
 exports.LogLevel = LogLevel;
-var ContextLogLevel = (function () {
+var ContextLogLevel = /** @class */ (function () {
     function ContextLogLevel(context, logLevel) {
         this.context = context;
         this.logLevel = logLevel;

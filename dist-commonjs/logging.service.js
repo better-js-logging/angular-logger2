@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var logging_types_1 = require("./logging.types");
 var logging_logger_1 = require("./logging.logger");
-var LoggingService = LoggingService_1 = (function () {
+var LoggingService = /** @class */ (function () {
     function LoggingService(config) {
         this.config = config;
         if (config && typeof (console) !== 'undefined' && console && console.debug) {
@@ -23,6 +23,7 @@ var LoggingService = LoggingService_1 = (function () {
         }
         this.config = new logging_types_1.LoggingConfig((config && config.prefixPattern) || LoggingService_1.DEFAULT_CONFIG.prefixPattern, (config && config.datetimePattern) || LoggingService_1.DEFAULT_CONFIG.datetimePattern, (config && config.datetimeLocale) || LoggingService_1.DEFAULT_CONFIG.datetimeLocale, (config && config.contextLogLevels) || LoggingService_1.DEFAULT_CONFIG.contextLogLevels);
     }
+    LoggingService_1 = LoggingService;
     /**
      * Convenience method to quickly retrieve a logger without going through Angular first (also missing out on default config provided through Angular).
      */
@@ -52,14 +53,14 @@ var LoggingService = LoggingService_1 = (function () {
         }
         return word;
     };
+    var LoggingService_1;
+    LoggingService.DEFAULT_CONFIG = new logging_types_1.LoggingConfig('%s::[%s]> ', 'LLL', window.navigator.language || 'en', [new logging_types_1.ContextLogLevel('*', logging_types_1.LogLevel.TRACE)]);
+    LoggingService = LoggingService_1 = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(logging_types_1.LoggingConfig)), __param(0, core_1.Optional()),
+        __metadata("design:paramtypes", [logging_types_1.LoggingConfig])
+    ], LoggingService);
     return LoggingService;
 }());
-LoggingService.DEFAULT_CONFIG = new logging_types_1.LoggingConfig('%s::[%s]> ', 'LLL', window.navigator.language || 'en', [new logging_types_1.ContextLogLevel('*', logging_types_1.LogLevel.TRACE)]);
-LoggingService = LoggingService_1 = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(logging_types_1.LoggingConfig)), __param(0, core_1.Optional()),
-    __metadata("design:paramtypes", [logging_types_1.LoggingConfig])
-], LoggingService);
 exports.LoggingService = LoggingService;
-var LoggingService_1;
 //# sourceMappingURL=logging.service.js.map

@@ -1,7 +1,10 @@
 var path = require("path");
 var webpack = require("webpack");
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 var config = {
+    mode: 'production',
+
     // These are the entry point of our library. We tell webpack to use the name we assign later, when creating the bundle.
     // We also use the name to filter the second entry point for applying code minification via UglifyJS
     entry: {
@@ -35,14 +38,18 @@ var config = {
     },
     // Activate source maps for the bundles in order to preserve the original source when the user debugs the application
     devtool: 'source-map',
+    optimization: {
+        minimizer: [
+            // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
+            // NB: Remember to activate sourceMaps in UglifyJsPlugin since they are disabled by default!
+            new UglifyJsPlugin({
+                sourceMap: true,
+                include: /\.min\.js$/,
+                uglifyOptions: { compress: false }
+            })
+        ]
+    },
     plugins: [
-        // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
-        // NB: Remember to activate sourceMaps in UglifyJsPlugin since they are disabled by default!
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {warnings: false},
-            sourceMap: true,
-            include: /\.min\.js$/
-        }),
         new webpack.ContextReplacementPlugin(
             // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)@angular/,

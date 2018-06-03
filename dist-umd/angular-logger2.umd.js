@@ -7,7 +7,7 @@
 		exports["AngularLogger2"] = factory(require("@angular/core"), require("moment"), require("sprintf-js"));
 	else
 		root["AngularLogger2"] = factory(root["ng"]["core"], root["moment"], root["sprintf-js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -43,18 +43,35 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -72,8 +89,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -93,35 +111,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
-var LoggingConfig = (function () {
+var LoggingConfig = /** @class */ (function () {
     function LoggingConfig(prefixPattern, datetimePattern, datetimeLocale, contextLogLevels) {
         this.prefixPattern = prefixPattern;
         this.datetimePattern = datetimePattern;
         this.datetimeLocale = datetimeLocale;
         this.contextLogLevels = contextLogLevels;
     }
+    LoggingConfig = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [String, String, String, Array])
+    ], LoggingConfig);
     return LoggingConfig;
 }());
-LoggingConfig = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [String, String, String, Array])
-], LoggingConfig);
 exports.LoggingConfig = LoggingConfig;
-var LogLevel = (function () {
+var LogLevel = /** @class */ (function () {
     function LogLevel(name, level) {
         this.name = name;
         this.level = level;
     }
+    LogLevel.TRACE = new LogLevel('TRACE', 4);
+    LogLevel.DEBUG = new LogLevel('DEBUG', 3);
+    LogLevel.INFO = new LogLevel('INFO', 2);
+    LogLevel.WARN = new LogLevel('WARN', 1);
+    LogLevel.ERROR = new LogLevel('ERROR', 0);
+    LogLevel.OFF = new LogLevel('OFF', -1);
     return LogLevel;
 }());
-LogLevel.TRACE = new LogLevel('TRACE', 4);
-LogLevel.DEBUG = new LogLevel('DEBUG', 3);
-LogLevel.INFO = new LogLevel('INFO', 2);
-LogLevel.WARN = new LogLevel('WARN', 1);
-LogLevel.ERROR = new LogLevel('ERROR', 0);
-LogLevel.OFF = new LogLevel('OFF', -1);
 exports.LogLevel = LogLevel;
-var ContextLogLevel = (function () {
+var ContextLogLevel = /** @class */ (function () {
     function ContextLogLevel(context, logLevel) {
         this.context = context;
         this.logLevel = logLevel;
@@ -135,7 +153,7 @@ exports.ContextLogLevel = ContextLogLevel;
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 /***/ }),
 /* 2 */
@@ -154,12 +172,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var sprintfjs = __webpack_require__(8);
+var sprintfjs = __webpack_require__(6);
 var sprintf = sprintfjs.sprintf;
-var moment = __webpack_require__(7);
+var moment = __webpack_require__(5);
 var logging_types_1 = __webpack_require__(0);
-var console_1 = __webpack_require__(5);
-var LoggerBase = (function () {
+var console_1 = __webpack_require__(4);
+var LoggerBase = /** @class */ (function () {
     function LoggerBase() {
     }
     LoggerBase.prototype.log = function (args, loggingFunc, level, context, config) {
@@ -251,7 +269,7 @@ var LoggerBase = (function () {
     return LoggerBase;
 }());
 exports.LoggerBase = LoggerBase;
-var Logger = (function (_super) {
+var Logger = /** @class */ (function (_super) {
     __extends(Logger, _super);
     function Logger(context, config) {
         var _this = _super.call(this) || this;
@@ -294,9 +312,9 @@ var Logger = (function (_super) {
         }
         return this.log(arguments, function () { Logger.console.error.apply(Logger.console, arguments); }, logging_types_1.LogLevel.ERROR, this.context, this.config);
     };
+    Logger.console = console_1.default();
     return Logger;
 }(LoggerBase));
-Logger.console = console_1.default();
 exports.Logger = Logger;
 
 
@@ -322,7 +340,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(1);
 var logging_types_1 = __webpack_require__(0);
 var logging_logger_1 = __webpack_require__(2);
-var LoggingService = LoggingService_1 = (function () {
+var LoggingService = /** @class */ (function () {
     function LoggingService(config) {
         this.config = config;
         if (config && typeof (console) !== 'undefined' && console && console.debug) {
@@ -330,6 +348,7 @@ var LoggingService = LoggingService_1 = (function () {
         }
         this.config = new logging_types_1.LoggingConfig((config && config.prefixPattern) || LoggingService_1.DEFAULT_CONFIG.prefixPattern, (config && config.datetimePattern) || LoggingService_1.DEFAULT_CONFIG.datetimePattern, (config && config.datetimeLocale) || LoggingService_1.DEFAULT_CONFIG.datetimeLocale, (config && config.contextLogLevels) || LoggingService_1.DEFAULT_CONFIG.contextLogLevels);
     }
+    LoggingService_1 = LoggingService;
     /**
      * Convenience method to quickly retrieve a logger without going through Angular first (also missing out on default config provided through Angular).
      */
@@ -359,48 +378,20 @@ var LoggingService = LoggingService_1 = (function () {
         }
         return word;
     };
+    var LoggingService_1;
+    LoggingService.DEFAULT_CONFIG = new logging_types_1.LoggingConfig('%s::[%s]> ', 'LLL', window.navigator.language || 'en', [new logging_types_1.ContextLogLevel('*', logging_types_1.LogLevel.TRACE)]);
+    LoggingService = LoggingService_1 = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(logging_types_1.LoggingConfig)), __param(0, core_1.Optional()),
+        __metadata("design:paramtypes", [logging_types_1.LoggingConfig])
+    ], LoggingService);
     return LoggingService;
 }());
-LoggingService.DEFAULT_CONFIG = new logging_types_1.LoggingConfig('%s::[%s]> ', 'LLL', window.navigator.language || 'en', [new logging_types_1.ContextLogLevel('*', logging_types_1.LogLevel.TRACE)]);
-LoggingService = LoggingService_1 = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(logging_types_1.LoggingConfig)), __param(0, core_1.Optional()),
-    __metadata("design:paramtypes", [logging_types_1.LoggingConfig])
-], LoggingService);
 exports.LoggingService = LoggingService;
-var LoggingService_1;
 
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var logging_service_1 = __webpack_require__(3);
-var LoggingModule = (function () {
-    function LoggingModule() {
-    }
-    return LoggingModule;
-}());
-LoggingModule = __decorate([
-    core_1.NgModule({
-        providers: [logging_service_1.LoggingService]
-    })
-], LoggingModule);
-exports.LoggingModule = LoggingModule;
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -415,7 +406,47 @@ exports.default = requireConsole;
 
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+
+/***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(1);
+var logging_service_1 = __webpack_require__(3);
+var LoggingModule = /** @class */ (function () {
+    function LoggingModule() {
+    }
+    LoggingModule = __decorate([
+        core_1.NgModule({
+            providers: [logging_service_1.LoggingService]
+        })
+    ], LoggingModule);
+    return LoggingModule;
+}());
+exports.LoggingModule = LoggingModule;
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -424,23 +455,11 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(4));
+__export(__webpack_require__(7));
 __export(__webpack_require__(0));
 __export(__webpack_require__(2));
 __export(__webpack_require__(3));
 
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ })
 /******/ ]);

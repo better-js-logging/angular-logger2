@@ -8,15 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var logging_service_1 = require("./logging.service");
-var LoggingModule = (function () {
+var LoggingModule = /** @class */ (function () {
     function LoggingModule() {
     }
+    LoggingModule = __decorate([
+        core_1.NgModule({
+            providers: [logging_service_1.LoggingService]
+        })
+    ], LoggingModule);
     return LoggingModule;
 }());
-LoggingModule = __decorate([
-    core_1.NgModule({
-        providers: [logging_service_1.LoggingService]
-    })
-], LoggingModule);
 exports.LoggingModule = LoggingModule;
 //# sourceMappingURL=logging.module.js.map

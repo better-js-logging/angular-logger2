@@ -6,15 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { NgModule } from '@angular/core';
 import { LoggingService } from './logging.service';
-var LoggingModule = (function () {
+var LoggingModule = /** @class */ (function () {
     function LoggingModule() {
     }
+    LoggingModule = __decorate([
+        NgModule({
+            providers: [LoggingService]
+        })
+    ], LoggingModule);
     return LoggingModule;
 }());
-LoggingModule = __decorate([
-    NgModule({
-        providers: [LoggingService]
-    })
-], LoggingModule);
 export { LoggingModule };
 //# sourceMappingURL=logging.module.js.map

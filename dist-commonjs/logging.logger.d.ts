@@ -1,13 +1,13 @@
 import { LoggingConfig, LogLevel } from './logging.types';
 export declare class LoggerBase {
     protected log(args: IArguments, loggingFunc: any, level: LogLevel, context: any, config: any): Array<any>;
-    private levelPassesThreshold(context, logLevel, config);
-    private getLogLevelThreshold(context, config);
-    private findLogLevelForContext(contextLogLevels, context);
-    private enhanceLogline(args, context, logLevel, config);
-    private maybeApplySprintf(args);
-    private generatePrefix(context, level, config);
-    private countSprintfHolders(pattern);
+    private levelPassesThreshold;
+    private getLogLevelThreshold;
+    private findLogLevelForContext;
+    private enhanceLogline;
+    private maybeApplySprintf;
+    private generatePrefix;
+    private countSprintfHolders;
 }
 export declare class Logger extends LoggerBase {
     private readonly context;

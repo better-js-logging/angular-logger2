@@ -1,7 +1,7 @@
 export default function requireConsole(): {
-    trace;
-    info;
-    debug;
-    warn;
-    error;
+    trace: any;
+    info: any;
+    debug: any;
+    warn: any;
+    error: any;
 };
